@@ -1,36 +1,43 @@
-<p align="center" >
-    <img src="https://www.xuxueli.com/doc/static/xxl-job/images/xxl-logo.jpg" width="150">
-    <h3 align="center">XXL-JOB</h3>
-    <p align="center">
-        XXL-JOB, a distributed task scheduling framework.
-        <br>
-        <a href="https://www.xuxueli.com/xxl-job/"><strong>-- Home Page --</strong></a>
-        <br>
-        <br>
-        <a href="https://github.com/xuxueli/xxl-job/actions">
-            <img src="https://github.com/xuxueli/xxl-job/workflows/Java%20CI/badge.svg" >
-        </a>
-        <a href="https://maven-badges.herokuapp.com/maven-central/com.xuxueli/xxl-job/">
-            <img src="https://maven-badges.herokuapp.com/maven-central/com.xuxueli/xxl-job/badge.svg" >
-        </a>
-        <a href="https://github.com/xuxueli/xxl-job/releases">
-         <img src="https://img.shields.io/github/release/xuxueli/xxl-job.svg" >
-        </a>
-        <a href="https://github.com/xuxueli/xxl-job/">
-            <img src="https://img.shields.io/github/stars/xuxueli/xxl-job" >
-        </a>
-        <a href="https://hub.docker.com/r/xuxueli/xxl-job-admin/">
-            <img src="https://img.shields.io/docker/pulls/xuxueli/xxl-job-admin" >
-        </a>
-        <a href="http://www.gnu.org/licenses/gpl-3.0.html">
-         <img src="https://img.shields.io/badge/license-GPLv3-blue.svg" >
-        </a>
-        <a href="https://www.xuxueli.com/page/donate.html">
-           <img src="https://img.shields.io/badge/%24-donate-ff69b4.svg?style=flat" >
-        </a>
-    </p>
-</p>
+## simple user
 
+```shell script
+#启动xxl-job容器
+docker-compose -p xxl-job -f docker/docker-compose.yaml up -d
+
+#查看日志
+docker-compose -p xxl-job -f docker/docker-compose.yaml logs -f --tail 100
+
+#停止容器
+docker-compose -p xxl-job -f docker/docker-compose.yaml stop
+```
+
+配合springboot项目例子，项目可以自动注册启动的xxl-job服务
+
+springboot web项目相关配置文件
+```
+# web port
+server.port=8081
+
+# log config
+logging.config=classpath:logback.xml
+
+
+### xxl-job admin address list, such as "http://address" or "http://address01,http://address02"
+xxl.job.admin.addresses=http://127.0.0.1:8080/xxl-job-admin
+
+### xxl-job executor address
+xxl.job.executor.appname=xxl-job-executor-sample
+xxl.job.executor.ip=
+xxl.job.executor.port=9999
+
+### xxl-job, access token
+xxl.job.accessToken=
+
+### xxl-job log path
+xxl.job.executor.logpath=/var/log/xxl-job/jobhandler
+### xxl-job log retention days
+xxl.job.executor.logretentiondays=30
+```
 
 ## Introduction
 XXL-JOB is a distributed task scheduling framework. 
